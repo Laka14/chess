@@ -36,10 +36,20 @@ def main():
     gs = Gamestate()
     loadimages()
     running = True
+    
+    sq_select = () #no square is selected, kepp track of the last click of the user(tuple: (row, col))
+    player_clicks=[] #keep track of player clicks (two tuples: [(6,4)])
+    
     while running:
         for e in p.event.get():
             if e.type== p.QUIT:
                 running= False
+            
+            elif e.type == p.MOUSEBUTTONDOWN:
+                location = p.mouse.get_pos() #(x,y)
+                col = location[0]//square_size
+                row = location[1]//square_size
+                
         
         drawGameState(screen, gs)
         clock.tick(maxfps)
